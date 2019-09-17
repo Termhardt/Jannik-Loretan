@@ -1,0 +1,54 @@
+
+package passwortgenerator;
+
+import java.util.Scanner;
+
+public class Passwortgenerator {
+
+   // by Jannik Loretan
+    public static void main(String[] args) {
+        String wort = eingabe();
+        
+        char[] passwort = passwortgenerierung(wort);
+        ausgabe(passwort);
+    }
+    public static String eingabe(){
+         Scanner read = new Scanner(System.in);
+         String wort = read.next(); //Wort wird eingegeben
+         return wort;
+    }
+    public static char[] passwortgenerierung(String wort){
+       wort = wort + ("dj23");
+       int e = wort.length();
+       e--;
+        if (wort.length() % 2 != 0)
+           wort = wort + ("1"); //falls das wort eine ungerade Länge hat, wird es mit einem char "gesalzen"
+       else;
+       int length =wort.length();
+         char[] passwort = wort.toCharArray(); //das wort wird in einen char array umgewandelt
+         char temp = passwort[0];
+         passwort[0] = passwort[e];
+         passwort[e] = temp;
+         e--;
+         int k = 1;
+         for(int i=0;i<length/2;i=i+2)
+         {
+             temp= passwort[k];
+             passwort[k]=passwort[e]; //Jeder nächste Buchstabe wird mit dem auf der anderen seite vertauscht
+             passwort[e]=temp;
+             k++;
+             e--;
+         }
+         return passwort;
+         
+        
+      
+           
+    }  
+    public static void ausgabe(char[] passwort){
+        System.out.println("Das verschlüsselte Passwort lautet");
+         System.out.println(passwort);
+    }
+    }
+    
+
